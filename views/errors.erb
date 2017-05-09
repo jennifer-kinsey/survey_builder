@@ -1,9 +1,18 @@
 
 <h3>Oops there were some errors:</h3>
+<% if @survey != nil %>
 <ul>
   <% @survey.errors.full_messages.each do |message| %>
     <li><%= message %></li>
   <% end %>
 </ul>
+<% end %>
+<% if @question != nil %>
+<ul>
+  <% @question.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
 
 <h5><a href="/" >Return to main page to try again</a></h5>

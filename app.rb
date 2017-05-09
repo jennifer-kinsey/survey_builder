@@ -34,7 +34,6 @@ post('/survey_add') do
   end
 end
 
-
 post('/survey_edit') do
   @survey = Survey.find(params.fetch('survey_id').to_i)
   erb(:modify_survey)
@@ -66,7 +65,11 @@ post('/question_add/:id') do
   description = params.fetch("description")
   @question = Question.create({description: description, survey_id: @survey.id})
   @questions = @survey.questions
-  erb(:add_questions)
+  if @question.save
+    erb(:add_questions)
+  else
+    erb(:errors)
+  end
 end
 
 post('/question_edit') do
