@@ -1,0 +1,13 @@
+
+<h2>Questions for <%= @survey.name %> </h2>
+<% if @survey.questions.any? %>
+  <ol>
+    <% @questions.each do |question| %>
+      <li><%= question.description %></a></li>
+    <% end %>
+  </ol>
+<% end %>
+<hr>
+
+<h3>Complete? Return Home.<h3>
+  <button type="button" class="btn btn-info"><a href="/">Done!</a></button>

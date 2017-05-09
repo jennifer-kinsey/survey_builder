@@ -13,6 +13,12 @@ get('/') do
   erb(:index)
 end
 
+get('/survey/:id') do
+  @survey = Survey.find(params.fetch('id').to_i)
+  @questions = @survey.questions
+  erb(:survey)
+end
+
 get('/survey_new') do
   erb(:create_survey)
 end
@@ -21,7 +27,11 @@ post('/survey_add') do
   name = params.fetch("name")
   @survey = Survey.create({name: name})
   @questions = @survey.questions
-  erb(:add_questions)
+  if @survey.save
+    erb(:add_questions)
+  else
+    erb(:errors)
+  end
 end
 
 

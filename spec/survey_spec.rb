@@ -1,6 +1,21 @@
 require "spec_helper"
 
 describe(Survey) do
+  it("capitalizes every word in the survey name") do
+    test_survey = Survey.create({name: "fcc survey"})
+    expect(test_survey.name).to eq("Fcc Survey")
+  end
+
+  it("validates presence of survey name") do
+    test_survey = Survey.create({name: ""})
+    expect(test_survey.save).to(eq(false))
+  end
+
+  it("ensures the length of survey name is at most 50 characters") do
+    test_survey = Survey.create({:name => "a".*(51)})
+    expect(test_survey.save).to eq(false)
+  end
+
   describe("#questions")do
     it("tells which questions are in the survey") do
       test_survey = Survey.create({name: "FCC Survey"})
