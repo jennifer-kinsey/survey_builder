@@ -1,0 +1,7 @@
+<h1>Edit/Delete Survey: <%=@survey.name%> </h1>
+
+<form action="/survey_edit/<%=survey.id%>" method="post">
+  <label for="name">Update Survey Name <%=@survey.name%>:</label>
+  <input type="text" name="name" id="name">
+  <button type="submit" class="btn btn-success">Update!</button>
+</form>

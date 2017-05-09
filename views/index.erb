@@ -1,0 +1,31 @@
+<h1>Super Survey Star</h1>
+<hr>
+<h3>Create New Survey</h3>
+<button type="button" class="btn btn-success"><a href="/survey_new">Go!</a></button>
+<hr>
+<!-- ***check out this route*** -->
+<form action='/survey_edit' method='post'>
+  <% if @surveys.any? %>
+    <h3>Edit/Delete Existing Survey:</h3>
+    <select id='survey_id' name='survey_id' type='text'>
+      <% @surveys.each do |survey| %>
+      <option value='<%= survey.id%>'> <%= survey.name %> </option>
+      <% end %>
+    </select>
+    <br>
+    <br>
+    <button type='submit' class='btn btn-primary'>Go!</button>
+  <%end%>
+</form>
+
+<hr>
+<h2>Take a Survey</h2>
+<% if @surveys.any? %>
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li><a href="/survey/<%= survey.id %>"><%= survey.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> There are no surveys to take yet.</p>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Add questions for <%= @survey.name %> </h1>
+<% if @questions.any? %>
+  <ol>
+    <% @questions.each do |question| %>
+      <li><%= question.description %></a></li>
+    <% end %>
+  </ol>
+<% else %>
+  <p> There are no questions yet.</p>
+<% end %>
+
+<h3>Step Two:</h3>
+<form action="/question_add/<%= @survey.id %>" method="post">
+  <!-- enter description -->
+  <label for="description">Question:</label>
+  <input type="text" name="description" id="description">
+  <button type="submit" class="btn btn-info">Add Question:</button>
+</form>
+
+<h3>Step Three:</h3>
+  <button type="button" class="btn btn-info"><a href="/">Done!</a></button>
