@@ -1,7 +1,18 @@
 <h1>Edit/Delete Survey: <%=@survey.name%> </h1>
 
-<form action="/survey_edit/<%=survey.id%>" method="post">
-  <label for="name">Update Survey Name <%=@survey.name%>:</label>
+<form action="/survey_edit/<%=@survey.id%>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Rename <%=@survey.name%>:</label>
   <input type="text" name="name" id="name">
   <button type="submit" class="btn btn-success">Update!</button>
+</form>
+<hr>
+<h2>Modify or Add Questions</h2>
+<button type="button" class="btn btn-info"><a href="/question_add/<%=@survey.id%>">Add/Mod Questions</a></button>
+<hr>
+<h2>Delete Survey</h2>
+<form action="/delete_survey/<%=@survey.id%>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <label for="delete">Delete <%=@survey.name%>:</label>
+  <button type="submit" class="btn btn-danger">Delete</button>
 </form>

@@ -1,4 +1,13 @@
-<h1>Add questions for <%= @survey.name %> </h1>
+<h2>Add New Questions</h2>
+<form action="/question_add/<%= @survey.id %>" method="post">
+  <!-- enter description -->
+  <label for="description">Question:</label>
+  <input type="text" name="description" id="description">
+  <button type="submit" class="btn btn-info">Add Question:</button>
+</form>
+<hr>
+
+<h2>Questions for <%= @survey.name %> </h2>
 <% if @questions.any? %>
   <ol>
     <% @questions.each do |question| %>
@@ -8,14 +17,21 @@
 <% else %>
   <p> There are no questions yet.</p>
 <% end %>
+<hr>
 
-<h3>Step Two:</h3>
-<form action="/question_add/<%= @survey.id %>" method="post">
-  <!-- enter description -->
-  <label for="description">Question:</label>
-  <input type="text" name="description" id="description">
-  <button type="submit" class="btn btn-info">Add Question:</button>
+<% if @questions.any? %>
+<form action='/question_edit/<%= @question.id%>' method='post'>
+  <h3>Edit/Delete Existing Question:</h3>
+  <select id='id' name='id' type='text'>
+    <% @questions.each do |question| %>
+    <option value='<%= @question.id%>'> <%= @question.description %> </option>
+    <% end %>
+  </select>
+  <br>
+  <br>
+  <button type='submit' class='btn btn-primary'>Go!</button>
 </form>
-
-<h3>Step Three:</h3>
+<%end%>
+<hr>
+<h3>Complete? Return Home.<h3>
   <button type="button" class="btn btn-info"><a href="/">Done!</a></button>
